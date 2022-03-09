@@ -2,43 +2,49 @@ package com.example.rcview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.todo_item.*
+import kotlinx.android.synthetic.main.add_dialog.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         var todoList = arrayListOf<ToDo>()
-
         val rvAdapter = ToDoAdapter(todoList)
+
+        fun addDialog(){
+            val inflater = LayoutInflater.from(this)
+            val v = inflater.inflate(R.layout.add_dialog, null)
+            val title = v.findViewById<EditText>(R.id.todo_title).toString()
+            val todo = ToDo(title,false)
+
+            val addDialog = AlertDialog.Builder(this)
+            /** set view **/
+
+            addDialog.setView(v)
+
+            addDialog.create()
+            addDialog.show()
+        }
 
         recyclerView.adapter = rvAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         button2.setOnClickListener {
-            if(editText.text.isEmpty()){
-                val dialog = AlertDialog.Builder(this)
-                    .setTitle("Пустое поле")
-                    .setIcon(R.drawable.ic_warning)
-                    .setMessage("Поле не должно быть пустым.")
-                    .setCancelable(true)
-                dialog.show()
-            }
-            else{
-                val title = editText.text.toString()
-                val todo = ToDo(title, false)
-                todoList.add(todo)
-                rvAdapter.notifyItemInserted(todoList.size - 1)
-
-                val edtext = editText.text
-                edtext.clear()
-        }
+                addDialog()
         }
 
+        button3.setOnClickListener {
+            if(todoList.isNotEmpty()){
+                rvAdapter.delete(todoList.size - 1)
+        }
+        }
 
     }
+
 }

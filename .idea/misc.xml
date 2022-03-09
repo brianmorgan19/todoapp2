@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/drawable/bk.xml" value="0.255" />
         <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/drawable/button.xml" value="0.151" />
+        <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/drawable/etdrawable.xml" value="0.255" />
         <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/drawable/item.xml" value="0.1295" />
+        <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/drawable/title.xml" value="0.255" />
         <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/layout/activity_main.xml" value="0.2949438202247191" />
+        <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/layout/add_dialog.xml" value="0.33" />
         <entry key="..\:/Users/Ivan Migal/AndroidStudioProjects/rcView/app/src/main/res/layout/todo_item.xml" value="0.33" />
       </map>
     </option>
