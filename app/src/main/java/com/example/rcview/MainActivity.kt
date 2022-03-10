@@ -18,14 +18,38 @@ class MainActivity : AppCompatActivity() {
         var todoList = arrayListOf<ToDo>()
         val rvAdapter = ToDoAdapter(todoList)
 
+        /** add dialog fun **/
         fun addDialog(){
             val inflater = LayoutInflater.from(this)
             val v = inflater.inflate(R.layout.add_dialog, null)
-            val title = v.findViewById<EditText>(R.id.todo_title).toString()
-            val todo = ToDo(title,false)
 
             val addDialog = AlertDialog.Builder(this)
             /** set view **/
+
+            addDialog.setPositiveButton("ДОБАВИТЬ") { dialog, i ->
+                val title = v.findViewById<EditText>(R.id.todo_title).text.toString()
+                if(title.isNotEmpty()){
+                    todoList.add(ToDo(title, false))
+                    rvAdapter.notifyDataSetChanged()
+                    dialog.dismiss()
+                }
+                else{
+                    val innerAlertDialog = AlertDialog.Builder(this)
+                    innerAlertDialog
+                        .setTitle("Поле не заполнено.")
+                        .setIcon(R.drawable.ic_warning)
+                        .setMessage("Пожалуйста, введите задание.")
+                        .setPositiveButton("OK"){ dialog, i ->
+                            dialog.dismiss()
+                        }
+                    innerAlertDialog.create()
+                    innerAlertDialog.show()
+                }
+            }
+
+            addDialog.setNegativeButton("НАЗАД") { dialog, i ->
+                dialog.cancel()
+            }
 
             addDialog.setView(v)
 
